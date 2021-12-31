@@ -31,7 +31,7 @@ export const Dashboard = ({navigation}) => {
   const onChangeSearch = searchQuery => {
     setSearchQuery(searchQuery);
     const newData = dash.filter(item => {
-      return item.name.search(searchQuery) > -1;
+      return item.name.search(searchQuery);
     });
     setDash(newData);
   };

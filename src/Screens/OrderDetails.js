@@ -43,6 +43,10 @@ export const OrderDetails = ({route, navigation}) => {
   };
 
   const downloadPdf = () => {
+    console.log('arrive in downloadpdf');
+    console.log(route.params.productInvoice);
+    const downloadInvoiceUrl = `${invoiceUrl}${route.params.productInvoice}`;
+    console.log(downloadInvoiceUrl);
     const {config, fs} = RNFetchBlob;
     let downloads =
       Platform.OS === 'android' ? fs.dirs.DownloadDir : fs.dirs.DocumentDir;
@@ -72,7 +76,7 @@ export const OrderDetails = ({route, navigation}) => {
     };
     let androidOptions = configfb;
     RNFetchBlob.config(Platform.OS === 'ios' ? iosOptions : androidOptions)
-      .fetch('GET', `${invoiceUrl}${productInvoice}`, {})
+      .fetch('GET', `http://www.africau.edu/images/default/sample.pdf`, {})
       .then(res => {
         if (Platform.OS === 'ios') {
           RNFetchBlob.fs
