@@ -22,11 +22,12 @@ import {Alert} from 'react-native';
 import {OrderHistory} from '../Screens/OrderHistory';
 import {ProductDetails} from '../Screens/ProductDetails';
 import {PlaceOrder} from '../Screens/PlaceOrder';
-import {SplashScreen} from '../Screens/SplashScreen';
+import {OrderConfirm} from '../Screens/OrderConfirm';
 import {EditAddress} from '../Screens/EditAddress';
 import {OrderDetails} from '../Screens/OrderDetails';
 import {ProfileView} from '../Screens/ProfileView';
 import {StoreLocatore} from '../Screens/StoreLocatore';
+import {SplashScreen} from '../Screens/SplashScreen';
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 const StackScreen = createStackNavigator();
@@ -49,11 +50,12 @@ const HomeStack = () => {
       <Drawer.Screen name="OrderHistory" component={OrderHistory} />
       <Drawer.Screen name="ProductDetails" component={ProductDetails} />
       <Drawer.Screen name="PlaceOrder" component={PlaceOrder} />
-      <Drawer.Screen name="SplashScreen" component={SplashScreen} />
+      <Drawer.Screen name="OrderConfirm" component={OrderConfirm} />
       <Drawer.Screen name="EditAddress" component={EditAddress} />
       <Drawer.Screen name="OrderDetails" component={OrderDetails} />
       <Drawer.Screen name="ProfileView" component={ProfileView} />
       <Drawer.Screen name="StoreLocatore" component={StoreLocatore} />
+      <Drawer.Screen name="SplashScreen" component={SplashScreen} />
     </Drawer.Navigator>
   );
 };
@@ -66,6 +68,7 @@ const AuthStack = () => {
          drawerContent={props => <DrawerContent {...props} />}
        />
        <StackScreen.Screen name="DrawerContent" component={DrawerContent} /> */}
+      <StackScreen.Screen name="SplashScreen" component={SplashScreen} />
       <StackScreen.Screen name="Login" component={Login} />
       <StackScreen.Screen name="ForgotPassword" component={ForgotPassword} />
       <StackScreen.Screen name="ResetPassword" component={ResetPassword} />

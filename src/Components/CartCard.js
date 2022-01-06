@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {Card, Title, Paragraph} from 'react-native-paper';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -32,6 +32,7 @@ export const CartCardComponent = ({...props}) => {
                   flexDirection: 'row',
                   justifyContent: 'space-evenly',
                   marginVertical: hp('2%'),
+                  marginRight: wp('30%'),
                 }}>
                 <AntDesign
                   name="pluscircle"
@@ -56,15 +57,17 @@ export const CartCardComponent = ({...props}) => {
                   display: 'flex',
                   flexDirection: 'row',
                   justifyContent: 'space-between',
-                  marginVertical: hp('1%'),
+                  marginVertical: hp('3%'),
                 }}>
                 <Title>${props.productPrice}</Title>
-                <MaterialIcons
-                  style={{paddingHorizontal: 50}}
-                  name="delete"
-                  size={35}
-                  color="black"
-                />
+                <TouchableOpacity onPress={() => {}}>
+                  <MaterialIcons
+                    style={{paddingHorizontal: 100}}
+                    name="delete"
+                    size={35}
+                    color="black"
+                  />
+                </TouchableOpacity>
               </View>
             </Card.Content>
           </View>

@@ -6,20 +6,28 @@ import {useSelector} from 'react-redux';
 import {wp, hp} from '../Styles/Style';
 import {TextInputComponent} from '../Components/TextInputComponent';
 import {errorHandling} from '../utils/ErrorHandling';
+import {useIsFocused} from '@react-navigation/native';
 
 export const EditAddress = ({route, navigation}) => {
   console.log('arrive in edit address screen');
+
   const [adres, setAdres] = useState({
-    address: '',
-    city: '',
-    pinCode: '',
-    state: '',
-    country: '',
+    address: route.params.address,
+    city: route.params.city,
+    pinCode: route.params.pincode,
+    state: route.params.state,
+    country: route.params.country,
   });
   const {addressId} = route.params;
   console.log('Id of Address', addressId);
   const authSelector = useSelector(state => state.authReducer);
   const token = authSelector.authData.token;
+
+  // Code for Reload text field
+  const useFocused = useIsFocused();
+  React.useEffect(() => {
+    setAdres(route.params);
+  }, [useFocused]);
 
   const onAddressChange = address => {
     setAdres({...adres, address});

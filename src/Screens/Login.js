@@ -19,7 +19,8 @@ import {RadioButtonComponent} from '../Components/RadioButtonComponent';
 import {NavigationContainer} from '@react-navigation/native';
 import {ForgotPassword} from './ForgotPassword';
 import {color} from 'react-native-reanimated';
-import {SplashScreen} from './SplashScreen';
+import {SplashScreen} from './OrderConfirm';
+import {errorHandling} from '../utils/ErrorHandling';
 
 export const Login = ({navigation}) => {
   const authSelector = useSelector(state => state);
@@ -55,13 +56,13 @@ export const Login = ({navigation}) => {
           console.log('success');
           var result = response.data;
           const {message, userId, token} = result;
-          result = {...result, isLogIn: true, fb: false, userEmail: text.email};
+          result = {...result, isLogIn: true, userEmail: text.email};
 
           authDispatch(userLogInAction(result));
           console.log('dispatch success');
         })
         .catch(function (error) {
-          console.log('error', error);
+          errorHandling(error);
         });
     } else {
       console.warn('invalid input');

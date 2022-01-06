@@ -5,6 +5,7 @@ import {
   GET_USER_ADDRESSES,
   GET_USER_CART,
   GET_USER_ORDERHISTORY,
+  DEFAULT_ADDRESS,
 } from './AuthActionTypes';
 
 export const userLogInAction = authDataResponse => ({
@@ -30,5 +31,9 @@ export const getUserCart = authDataResponse => ({
 });
 export const getUserOrderHistory = authDataResponse => ({
   type: GET_USER_ORDERHISTORY,
+  authDataResponse,
+});
+export const defaultUserAddress = authDataResponse => ({
+  type: DEFAULT_ADDRESS,
   authDataResponse,
 });

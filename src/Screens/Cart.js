@@ -109,9 +109,7 @@ export const Cart = ({navigation}) => {
             style={ProductDetailStyl.button}
             onPress={() => {
               if (totalPrice != 0) {
-                navigation.navigate('PlaceOrder', {
-                  objId: cartId,
-                });
+                navigation.navigate('ShippingAddress');
               } else {
                 Alert.alert('Cart is Empty');
               }

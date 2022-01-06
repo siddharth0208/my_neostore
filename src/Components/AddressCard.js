@@ -1,12 +1,23 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import {Card, Divider, Button} from 'react-native-paper';
 import {MaterialIcons} from 'react-native-vector-icons/MaterialIcons';
 import {wp, hp} from '../Styles/Style';
 import {useNavigation} from '@react-navigation/native';
+import {useDispatch} from 'react-redux';
+import {defaultUserAddress} from '../Redux/Auth folder/AuthAction';
 
-export const AddressCardComponent = props => {
+export const AddressCardComponent = ({
+  address,
+  pincode,
+  city,
+  state,
+  country,
+  addressId,
+}) => {
   const navigation = useNavigation();
+  const addressDispatch = useDispatch();
+
   return (
     <View style={{flex: 1}}>
       <Card
@@ -18,11 +29,11 @@ export const AddressCardComponent = props => {
         <Card.Content>
           <Text style={{color: 'black'}}>
             {' '}
-            {props.address} {props.city}
+            {address} {city}
           </Text>
           <Text style={{color: 'black'}}>
-            {props.state} {'-'}
-            {props.pincode} {props.country}{' '}
+            {state} {'-'}
+            {pincode} {country}{' '}
           </Text>
           <Divider
             style={{
@@ -38,7 +49,12 @@ export const AddressCardComponent = props => {
               mode="outlined"
               onPress={() => {
                 navigation.navigate('EditAddress', {
-                  addressId: props.id,
+                  addressId: addressId,
+                  address: address,
+                  city: city,
+                  pincode: pincode,
+                  state: state,
+                  country: country,
                 });
               }}
               style={{
@@ -58,14 +74,30 @@ export const AddressCardComponent = props => {
               Delete
             </Button>
           </View>
+          <TouchableOpacity
+            onPress={() => {
+              var result = {
+                address: address,
+                pincode: pincode,
+                city: city,
+                state: state,
+                country: country,
+              };
+              addressDispatch(defaultUserAddress(result));
+              navigation.navigate('PlaceOrder');
+            }}>
+            <Text
+              style={{
+                alignSelf: 'center',
+                paddingTop: wp('2%'),
+                color: 'lightgreen',
+                fontSize: wp('4%'),
+              }}>
+              Set as Default
+            </Text>
+          </TouchableOpacity>
         </Card.Content>
       </Card>
     </View>
   );
 };
-
-address: 'ward no 4';
-city: 'katni';
-country: 'india';
-pincode: 483770;
-state: 'india';

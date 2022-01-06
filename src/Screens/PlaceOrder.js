@@ -14,24 +14,26 @@ import {useIsFocused} from '@react-navigation/native';
 import {Appbar, Button, Divider, Title} from 'react-native-paper';
 import {wp, hp} from '../Styles/Style';
 import {PlaceOrderCard} from '../Components/PlaceOrderCard';
-import {SplashScreen} from './SplashScreen';
 
 export const PlaceOrder = ({route, navigation}) => {
   const [Data, setData] = React.useState([]);
   const [checkOut, setCheckOut] = React.useState([]);
   const [getId, setGetId] = React.useState('');
+  const userCartSelector = useSelector(state => state.authReducer.getUserCart);
+  const defaultAddressSelector = useSelector(
+    state => state.authReducer.defaultAddress,
+  );
 
-  const {objId} = route.params;
+  const objId = userCartSelector._id;
   const [placeOrder, setPlaceOrder] = React.useState([]);
   const authSelector = useSelector(state => state.authReducer);
   var token = authSelector.authData.token;
   console.log('Place order token', token);
   const isFocused = useIsFocused();
   React.useEffect(() => {
-    getAddresses();
     getOrders();
   }, [isFocused]);
-  const getAddresses = () => {
+  /*  const getAddresses = () => {
     axios
       .get('https://nameless-savannah-21991.herokuapp.com/proceedToBuy', {
         headers: {Authorization: `Bearer ${token}`},
@@ -44,7 +46,7 @@ export const PlaceOrder = ({route, navigation}) => {
       .catch(function (error) {
         console.log('Proceed to buy', error);
       });
-  };
+  }; */
   const getOrders = () => {
     const config = {
       headers: {Authorization: `Bearer ${token}`},
@@ -54,11 +56,11 @@ export const PlaceOrder = ({route, navigation}) => {
         `https://nameless-savannah-21991.herokuapp.com/proceedToCheckout/${objId}`,
         {
           address: {
-            address: placeOrder.address,
-            pincode: placeOrder.pincode,
-            city: placeOrder.city,
-            state: placeOrder.state,
-            country: placeOrder.country,
+            address: defaultAddressSelector.address,
+            pincode: defaultAddressSelector.pincode,
+            city: defaultAddressSelector.city,
+            state: defaultAddressSelector.state,
+            country: defaultAddressSelector.country,
           },
         },
         config,
@@ -114,16 +116,16 @@ export const PlaceOrder = ({route, navigation}) => {
             {Data.userName}
           </Text>
           <Text style={{color: 'black', fontSize: 20}}>
-            {placeOrder.address} ,
+            {defaultAddressSelector.address} ,
           </Text>
           <Text style={{color: 'black', fontSize: 20}}>
-            {placeOrder.city}-{placeOrder.pincode},
+            {defaultAddressSelector.city}-{defaultAddressSelector.pincode},
           </Text>
           <Text style={{color: 'black', fontSize: 20}}>
-            {placeOrder.state} ,
+            {defaultAddressSelector.state} ,
           </Text>
           <Text style={{color: 'black', fontSize: 20}}>
-            {placeOrder.country}{' '}
+            {defaultAddressSelector.country}{' '}
           </Text>
         </View>
         <TouchableOpacity
@@ -178,7 +180,7 @@ export const PlaceOrder = ({route, navigation}) => {
           style={styles.button}
           onPress={() => {
             FinalOrder();
-            navigation.navigate('SplashScreen');
+            navigation.navigate('OrderConfirm');
           }}>
           <Text style={{color: 'white'}}>CONFIRM ORDER</Text>
         </Button>

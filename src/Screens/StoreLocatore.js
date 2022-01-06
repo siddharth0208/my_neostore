@@ -22,15 +22,15 @@ export const StoreLocatore = ({navigation}) => {
           latitudeDelta: 0.0922,
           longitudeDelta: 0.0421,
         }}
-        style={{height: '100%', width: '100%'}}
-      />
-      <Marker
-        coordinate={{
-          latitude: 19.07609,
-          longitude: 72.877426,
-        }}
-        icon={<Ionicons name="location-sharp" size={25} color="red" />}
-      />
+        style={{height: '100%', width: '100%'}}>
+        <Marker
+          coordinate={{
+            latitude: 19.076874,
+            longitude: 72.877426,
+          }}
+          icon={<Ionicons name="location-sharp" size={25} color="red" />}
+        />
+      </MapView>
     </View>
   );
 };

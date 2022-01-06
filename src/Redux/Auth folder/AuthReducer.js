@@ -5,6 +5,7 @@ import {
   GET_USER_ADDRESSES,
   GET_USER_CART,
   GET_USER_ORDERHISTORY,
+  DEFAULT_ADDRESS,
 } from './AuthActionTypes';
 
 const initialState = {
@@ -14,6 +15,7 @@ const initialState = {
   getUserAddresses: [],
   getUserCart: [],
   userOrderHistory: [],
+  defaultAddress: [],
 };
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -50,6 +52,11 @@ export const authReducer = (state = initialState, action) => {
       return {
         ...state,
         userOrderHistory: action.authDataResponse,
+      };
+    case DEFAULT_ADDRESS:
+      return {
+        ...state,
+        defaultAddress: action.authDataResponse,
       };
     default:
       return state;
