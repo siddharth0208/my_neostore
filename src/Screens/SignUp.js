@@ -122,6 +122,7 @@ export const SignUp = ({navigation}) => {
         onChangeText={value => {
           handleOnChangeText(value, 'firstName');
         }}
+        helperText="yes"
       />
 
       <TextInputComponent
@@ -130,6 +131,7 @@ export const SignUp = ({navigation}) => {
         onChangeText={value => {
           handleOnChangeText(value, 'lastName');
         }}
+        helperText="yes"
       />
 
       <TextInputComponent
@@ -138,6 +140,7 @@ export const SignUp = ({navigation}) => {
         onChangeText={value => {
           handleOnChangeText(value, 'email');
         }}
+        helperText="yes"
       />
 
       <TextInputComponent
@@ -146,6 +149,7 @@ export const SignUp = ({navigation}) => {
         onChangeText={value => {
           handleOnChangeText(value, 'phoneNumber');
         }}
+        helperText="yes"
       />
 
       <TextInputComponent

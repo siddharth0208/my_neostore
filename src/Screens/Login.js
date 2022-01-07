@@ -78,6 +78,7 @@ export const Login = ({navigation}) => {
         onChangeText={value => {
           handleOnChangeText(value, 'email');
         }}
+        helperText="yes"
       />
 
       <TextInputComponent

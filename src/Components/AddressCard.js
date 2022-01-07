@@ -90,7 +90,7 @@ export const AddressCardComponent = ({
               style={{
                 alignSelf: 'center',
                 paddingTop: wp('2%'),
-                color: 'lightgreen',
+                color: 'darkblue',
                 fontSize: wp('4%'),
               }}>
               Set as Default
